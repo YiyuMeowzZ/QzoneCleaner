@@ -13,7 +13,7 @@ QQ空间净化脚本，提供毛玻璃效果、二次元背景替换等功能。
 ## 安装方法
 
 1. 安装 [Tampermonkey](https://www.tampermonkey.net/) 浏览器扩展
-2. 点击 [安装脚本](https://github.com/user/QzoneCleaner/raw/main/QzoneCleaner.user.js)
+2. 点击 [安装脚本](https://github.com/YiyuMeowzZ/QzoneCleaner/raw/master/QzoneCleaner.user.js)
 3. 刷新QQ空间页面即可生效
 
 ## 致谢
