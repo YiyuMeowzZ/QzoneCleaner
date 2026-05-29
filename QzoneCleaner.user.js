@@ -76,9 +76,34 @@ function setStyle(selector, styles) {
     setStyle('.fn-checkin-btn .checkin-btn', { 'border-radius': '10px' });
     setStyle('.fn-checkin-btn', { 'border-radius': '10px' });
 
-            // 访客模块
+                // 访客模块
     setStyle('.icenter-right-mod', { 'background-color': 'rgba(255,255,255,0.73)', 'border-radius': '10px' });
-    setStyle('.visit-module', { 'display': 'none' });  // 隐藏整个访客模块
+    setStyle('.visit-module', { 'display': 'none' });
+    setStyle('.visit-module .visit-refuse', { 'display': 'none' });
+    setStyle('.visit-module .visit-count', { 'display': 'none' });
+    setStyle('.visit-module .other-info', { 'display': 'none' });
+    setStyle('.visit-module .count-wrapper', { 'display': 'none' });
+    setStyle('.visit-module .today-wrapper', { 'display': 'none' });
+
+    // 动态隐藏访客模块（处理异步加载）
+    function hideVisitModule() {
+        var visitModule = document.querySelector('.visit-module');
+        if (visitModule) {
+            visitModule.style.display = 'none';
+            console.log('QzoneCleaner: 访客模块已隐藏');
+        }
+    }
+    // 立即尝试隐藏
+    hideVisitModule();
+    // 监听DOM变化
+    var observer = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+            if (mutation.addedNodes.length) {
+                hideVisitModule();
+            }
+        });
+    });
+    observer.observe(document.body, { childList: true, subtree: true });
 
     // 主页背景覆盖
     setStyle('.lay_background', { 'background-image': 'none' });
