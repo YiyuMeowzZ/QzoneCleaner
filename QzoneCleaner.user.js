@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         QzoneCleaner
 // @namespace    https://github.com/YiyuMeowzZ/QzoneCleaner
-// @version      1.4
+// @version      1.5
 // @description  QQ空间净化
 // @author       YiyuMeowzZ
 // @match        http*://user.qzone.qq.com/*
@@ -76,32 +76,22 @@ function setStyle(selector, styles) {
     setStyle('.fn-checkin-btn .checkin-btn', { 'border-radius': '10px' });
     setStyle('.fn-checkin-btn', { 'border-radius': '10px' });
 
-                            // 访客模块 - 只隐藏访客部分，保留容器
+                                // 访客模块 - 隐藏整个shop-item容器
     var visitStyle = document.createElement('style');
     visitStyle.textContent = `
-        .visit-module,
-        .visit-module *,
-        .sn-count,
-        .sn-count *,
-        [class*="visit-module"],
-        [class*="sn-count"] {
+        #visitorsDiv,
+        .shop-item:has(.visit-module) {
             display: none !important;
-            visibility: hidden !important;
-            height: 0 !important;
-            width: 0 !important;
-            overflow: hidden !important;
         }
     `;
     document.head.appendChild(visitStyle);
 
     // 动态隐藏（处理异步加载）
     function hideVisitElements() {
-        document.querySelectorAll('.visit-module, .sn-count').forEach(function(el) {
-            el.style.setProperty('display', 'none', 'important');
-            el.style.setProperty('visibility', 'hidden', 'important');
-            el.style.setProperty('height', '0', 'important');
-            el.style.setProperty('width', '0', 'important');
-            el.style.setProperty('overflow', 'hidden', 'important');
+        document.querySelectorAll('#visitorsDiv, .shop-item').forEach(function(el) {
+            if (el.querySelector('.visit-module') || el.id === 'visitorsDiv') {
+                el.style.setProperty('display', 'none', 'important');
+            }
         });
     }
     hideVisitElements();
