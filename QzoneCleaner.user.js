@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         QzoneCleaner
 // @namespace    https://github.com/YiyuMeowzZ/QzoneCleaner
-// @version      1.2
+// @version      1.3
 // @description  QQ空间净化
 // @author       YiyuMeowzZ
 // @match        http*://user.qzone.qq.com/*
@@ -76,15 +76,34 @@ function setStyle(selector, styles) {
     setStyle('.fn-checkin-btn .checkin-btn', { 'border-radius': '10px' });
     setStyle('.fn-checkin-btn', { 'border-radius': '10px' });
 
-                    // 访客模块 - 隐藏整个区域
-    setStyle('.icenter-right-mod', { 'display': 'none' });
-    setStyle('.visit-module', { 'display': 'none' });
-    setStyle('.sn-count', { 'display': 'none' });
+                        // 访客模块 - 用CSS注入彻底隐藏
+    var visitStyle = document.createElement('style');
+    visitStyle.textContent = `
+        .visit-module,
+        .visit-module *,
+        .icenter-right-mod,
+        .icenter-right-mod *,
+        .sn-count,
+        .sn-count *,
+        [class*="visit"],
+        [id*="visit"] {
+            display: none !important;
+            visibility: hidden !important;
+            height: 0 !important;
+            width: 0 !important;
+            overflow: hidden !important;
+        }
+    `;
+    document.head.appendChild(visitStyle);
 
     // 动态隐藏（处理异步加载）
     function hideVisitElements() {
         document.querySelectorAll('.visit-module, .icenter-right-mod, .sn-count').forEach(function(el) {
             el.style.setProperty('display', 'none', 'important');
+            el.style.setProperty('visibility', 'hidden', 'important');
+            el.style.setProperty('height', '0', 'important');
+            el.style.setProperty('width', '0', 'important');
+            el.style.setProperty('overflow', 'hidden', 'important');
         });
     }
     hideVisitElements();
