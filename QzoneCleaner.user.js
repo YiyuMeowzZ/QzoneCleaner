@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         QzoneCleaner
 // @namespace    https://github.com/YiyuMeowzZ/QzoneCleaner
-// @version      1.0
+// @version      1.1
 // @description  QQ空间净化
 // @author       YiyuMeowzZ
 // @match        http*://user.qzone.qq.com/*
