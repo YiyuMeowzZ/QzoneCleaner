@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         QzoneCleaner
 // @namespace    https://github.com/YiyuMeowzZ/QzoneCleaner
-// @version      1.3
+// @version      1.4
 // @description  QQ空间净化
 // @author       YiyuMeowzZ
 // @match        http*://user.qzone.qq.com/*
@@ -76,17 +76,15 @@ function setStyle(selector, styles) {
     setStyle('.fn-checkin-btn .checkin-btn', { 'border-radius': '10px' });
     setStyle('.fn-checkin-btn', { 'border-radius': '10px' });
 
-                        // 访客模块 - 用CSS注入彻底隐藏
+                            // 访客模块 - 只隐藏访客部分，保留容器
     var visitStyle = document.createElement('style');
     visitStyle.textContent = `
         .visit-module,
         .visit-module *,
-        .icenter-right-mod,
-        .icenter-right-mod *,
         .sn-count,
         .sn-count *,
-        [class*="visit"],
-        [id*="visit"] {
+        [class*="visit-module"],
+        [class*="sn-count"] {
             display: none !important;
             visibility: hidden !important;
             height: 0 !important;
@@ -98,7 +96,7 @@ function setStyle(selector, styles) {
 
     // 动态隐藏（处理异步加载）
     function hideVisitElements() {
-        document.querySelectorAll('.visit-module, .icenter-right-mod, .sn-count').forEach(function(el) {
+        document.querySelectorAll('.visit-module, .sn-count').forEach(function(el) {
             el.style.setProperty('display', 'none', 'important');
             el.style.setProperty('visibility', 'hidden', 'important');
             el.style.setProperty('height', '0', 'important');
