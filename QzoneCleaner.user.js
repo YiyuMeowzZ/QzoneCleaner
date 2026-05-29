@@ -76,10 +76,9 @@ function setStyle(selector, styles) {
     setStyle('.fn-checkin-btn .checkin-btn', { 'border-radius': '10px' });
     setStyle('.fn-checkin-btn', { 'border-radius': '10px' });
 
-        // 访客模块
+            // 访客模块
     setStyle('.icenter-right-mod', { 'background-color': 'rgba(255,255,255,0.73)', 'border-radius': '10px' });
-    setStyle('.visit-refuse', { 'display': 'none' });  // 隐藏被挡访客
-    setStyle('.visit-count', { 'display': 'none' });   // 隐藏访客总量
+    setStyle('.visit-module', { 'display': 'none' });  // 隐藏整个访客模块
 
     // 主页背景覆盖
     setStyle('.lay_background', { 'background-image': 'none' });
